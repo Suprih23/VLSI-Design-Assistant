@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 from PIL import Image
 from graphviz import Source # Import for the new tool
 
-# Load environment variables
+# Load env variables
 load_dotenv()
 
 # --- Tool Definitions ---
@@ -55,11 +55,11 @@ def generate_circuit_diagram(dot_description: str):
         if not os.path.exists('static'):
             os.makedirs('static')
         
-        # Renders the diagram and saves it as 'circuit.png' in the 'static' folder
+       
         s = Source(dot_description, filename="circuit", format="png", directory="static")
         s.render(view=False) # view=False prevents it from opening the file automatically
         
-        # The frontend can now access this image at the URL '/static/circuit.png'
+        
         return json.dumps({"status": "success", "image_path": "/static/circuit.png"})
     except Exception as e:
         # This can happen if Graphviz software is not installed
